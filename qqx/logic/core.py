@@ -33,6 +33,8 @@ def process(img_rgb, progress_updater=lambda x: None, logger=lambda txt: None, i
         (maxVal, maxLoc, scale, angle) = found
 
         logger('{}: {} - ({:.4f})({:.4f})'.format(template['nodeName'], maxVal, angle, scale))
+        # update progress
+        progress_updater(int((idx + 1.0) * 100.0 / len(templates)))
         if maxVal <= threshold:
             continue
 
@@ -48,9 +50,6 @@ def process(img_rgb, progress_updater=lambda x: None, logger=lambda txt: None, i
             'angle': angle,
             'scale': scale
         })
-
-        # update progress
-        progress_updater(int((idx + 1.0) * 100.0 / len(templates)))
 
     progress_updater(100)
     (top_cards, bottom_cards) = candidates_spliter.split(candidates)

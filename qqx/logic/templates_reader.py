@@ -1,8 +1,8 @@
 import os
+import sys
 
 import cv2
 import numpy as np
-import sys
 
 
 def resource_path(*relative_path):
