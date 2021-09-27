@@ -26,6 +26,8 @@ def process(img_rgb, progress_updater=lambda x: None, logger=lambda txt: None, i
             if found is None or maxVal > found[0]:
                 found = (maxVal, maxLoc, scale, angle)
 
+        if found is None:
+            continue
         # unpack the bookkeeping variable and compute the (x, y) coordinates
         # of the bounding box based on the resized ratio
         (maxVal, maxLoc, scale, angle) = found
