@@ -28,18 +28,18 @@ def split(lst):
     if len(lst) == 1:
         return lst, []
 
-    sorted_list = list(sorted(lst, key=lambda t: t['pos'][1], reverse=True))
+    sorted_list = list(sorted(lst, key=lambda t: t['pos'][1]))
     idx = 0
     while idx + 1 < len(sorted_list):
         curr_ele = sorted_list[idx]
         next_ele = sorted_list[idx + 1]
-        if abs(curr_ele['pos'][1] - next_ele['pos'][1]) <= 4:
+        if abs(curr_ele['pos'][1] - next_ele['pos'][1]) <= 70:
             idx += 1
         else:
             break
 
-    bottom_lst = sorted_list[:idx + 1]
-    top_lst = sorted_list[idx + 1:]
+    top_lst = sorted_list[:idx + 1]
+    bottom_lst = sorted_list[idx + 1:]
     top_lst = deduplicate_candidates(sorted(top_lst, key=lambda t: t['pos']))
     bottom_lst = deduplicate_candidates(sorted(bottom_lst, key=lambda t: t['pos']))
     return top_lst, bottom_lst
